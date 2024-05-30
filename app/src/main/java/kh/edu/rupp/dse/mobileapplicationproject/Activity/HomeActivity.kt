@@ -1,23 +1,18 @@
 package kh.edu.rupp.dse.mobileapplicationproject.Activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kh.edu.rupp.dse.mobileapplicationproject.Adapter.BestFoodsAdapter
 import kh.edu.rupp.dse.mobileapplicationproject.Adapter.CategoryAdapter
-import kh.edu.rupp.dse.mobileapplicationproject.Domain.Category
-import kh.edu.rupp.dse.mobileapplicationproject.Domain.Foods
-import kh.edu.rupp.dse.mobileapplicationproject.Domain.Location
-import kh.edu.rupp.dse.mobileapplicationproject.Domain.Price
-import kh.edu.rupp.dse.mobileapplicationproject.Domain.Time
+import kh.edu.rupp.dse.mobileapplicationproject.Domain.*
 import kh.edu.rupp.dse.mobileapplicationproject.R
 import kh.edu.rupp.dse.mobileapplicationproject.databinding.ActivityHomeBinding
 
@@ -26,11 +21,20 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var database: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE)
+
+        // Retrieve the full name from SharedPreferences
+        val fullName = sharedPreferences.getString("FULL_NAME", "User")
+
+        // Display the full name
+        binding.username.text = fullName
 
         database = FirebaseDatabase.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference
@@ -59,11 +63,17 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
         binding.cardBtn.setOnClickListener {
             startActivity(Intent(this, CartActivity::class.java))
         }
-    }
 
+        binding.viewall.setOnClickListener {
+            // Handle View All click
+            val intent = Intent(this, BestFoodsActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
     private fun initCategory() {
         val myRef = databaseReference.child("Category")
@@ -93,7 +103,6 @@ class HomeActivity : AppCompatActivity() {
             }
         })
     }
-
 
     private fun initBestFood() {
         val myRef = databaseReference.child("Foods")

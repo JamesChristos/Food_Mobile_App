@@ -1,6 +1,7 @@
 package kh.edu.rupp.dse.mobileapplicationproject.Activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
@@ -13,15 +14,17 @@ import kh.edu.rupp.dse.mobileapplicationproject.R
 import com.google.firebase.auth.GoogleAuthProvider
 import kh.edu.rupp.dse.mobileapplicationproject.databinding.ActivityRegisterBinding
 
-
 class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.client_id))
@@ -90,9 +93,16 @@ class RegisterActivity : BaseActivity() {
                                 }
                             }
                         Toast.makeText(this, "User created successfully, Verification email sent to ${user.email}. Please verify your email.", Toast.LENGTH_SHORT).show()
-                        // Navigate to login page
-                        val intent = Intent(this, LoginActivity::class.java)
+
+                        // Store the full name in SharedPreferences
+                        val editor = sharedPreferences.edit()
+                        editor.putString("FULL_NAME", fullname)
+                        editor.apply()
+
+                        // Navigate to home page
+                        val intent = Intent(this, HomeActivity::class.java)
                         startActivity(intent)
+                        finish()
                     } else {
                         // Check if the exception indicates user already exists
                         if (task.exception is FirebaseAuthUserCollisionException) {

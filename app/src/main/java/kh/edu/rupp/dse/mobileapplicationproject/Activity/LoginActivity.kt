@@ -1,6 +1,7 @@
 package kh.edu.rupp.dse.mobileapplicationproject.Activity
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
@@ -11,11 +12,14 @@ import kh.edu.rupp.dse.mobileapplicationproject.databinding.ActivityLoginBinding
 class LoginActivity : BaseActivity() {
 
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE)
 
         btnBackListener()
         linkRegisterListener()
