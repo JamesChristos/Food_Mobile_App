@@ -2,7 +2,6 @@ package kh.edu.rupp.dse.mobileapplicationproject.Adapter
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,35 +27,68 @@ class CategoryAdapter(private val items: ArrayList<Category>) : RecyclerView.Ada
         val item = items[position]
         holder.titleTxt.text = item.Name
 
-        // Set the background image based on the position
-        val backgroundResourceId = getBackgroundResourceId(position)
-        holder.pic.setBackgroundResource(backgroundResourceId)
-
         // Load the image using Glide
-        val drawableResourceId = context.resources.getIdentifier(item.ImagePath, "drawable", context.packageName)
-        Glide.with(context)
-            .load(drawableResourceId)
-            .into(holder.pic)
+        if (position == 0) {
+            // Use pizza.jpg for the first item
+            Glide.with(context)
+                .load(R.drawable.pizza) // Assuming pizza.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 1) {
+            // Use burger.jpg for the second item
+            Glide.with(context)
+                .load(R.drawable.burger) // Assuming burger.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 2) {
+            // Use sandwich.jpg for the third item
+            Glide.with(context)
+                .load(R.drawable.chicken) // Assuming sandwich.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 3) {
+            // Use salad.jpg for the fourth item
+            Glide.with(context)
+                .load(R.drawable.soup) // Assuming salad.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 4) {
+            // Use dessert.jpg for the fifth item
+            Glide.with(context)
+                .load(R.drawable.meat) // Assuming dessert.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 5) {
+            // Use drink.jpg for the sixth item
+            Glide.with(context)
+                .load(R.drawable.bakery) // Assuming drink.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 6) {
+            // Use other.jpg for the seventh item
+            Glide.with(context)
+                .load(R.drawable.drink) // Assuming other.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else if (position == 7) {
+            // Use other.jpg for the seventh item
+            Glide.with(context)
+                .load(R.drawable.fish) // Assuming other.jpg is in the drawable folder
+                .into(holder.pic)
+        }
+        else {
+            // Load the image based on the item's ImagePath
+            val drawableResourceId = context.resources.getIdentifier(item.ImagePath, "drawable", context.packageName)
+            Glide.with(context)
+                .load(drawableResourceId)
+                .into(holder.pic)
+        }
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, ListFoodActivity::class.java)
             intent.putExtra("CategoryId", items[position].Id)
             intent.putExtra("CategoryName", items[position].Name)
             context.startActivity(intent)
-        }
-    }
-
-    private fun getBackgroundResourceId(position: Int): Int {
-        return when (position % 8) {
-            0 -> R.drawable.cat_0_background
-            1 -> R.drawable.cat_1_background
-            2 -> R.drawable.cat_2_background
-            3 -> R.drawable.cat_3_background
-            4 -> R.drawable.cat_4_background
-            5 -> R.drawable.cat_5_background
-            6 -> R.drawable.cat_6_background
-            7 -> R.drawable.cat_7_background
-            else -> R.drawable.cat_2_background
         }
     }
 
@@ -68,5 +100,4 @@ class CategoryAdapter(private val items: ArrayList<Category>) : RecyclerView.Ada
         val titleTxt: TextView = itemView.findViewById(R.id.catNameTxt)
         val pic: ImageView = itemView.findViewById(R.id.imgCat)
     }
-
 }

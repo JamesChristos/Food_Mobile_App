@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.DeliverActivity"
+    android:background="@color/background_color">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gambar1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/F_img_1"
+        />
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="16dp"
+        android:src="@drawable/black_back_arrow"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"/>
+
+    <ImageView
+        android:id="@+id/delivery_image"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_below="@+id/F_img_1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/delivering" />
+
+    <!-- Status Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/status_card"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        android:layout_below="@id/delivery_image"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/order_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preparing Your Orders"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:layout_gravity="center" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/group"
+                android:padding="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                />
+
+
+            <TextView
+                android:id="@+id/order_eta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Arrives in 30 minutes"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:textSize="14sp"
+                android:textColor="@color/gray" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Back Button at Bottom -->
+    <androidx.appcompat.widget.AppCompatButton
+        style="@android:style/Widget.Button"
+        android:id="@+id/backHome"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="Back Home"
+        android:background="@drawable/button_shape"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="130dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppinssemibold"
+        android:layout_below="@id/status_card"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

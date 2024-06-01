@@ -88,6 +88,12 @@ class CartActivity : AppCompatActivity() {
             onBackPressed()  // Handle back button click
         }
 
+        binding.placeorderBtn.setOnClickListener {
+            // Handle place order button click
+            val intent = Intent(this, DeliverActivity::class.java)
+            startActivity(intent)
+        }
+
         setVariable()
         calculateCart()
         initList()
