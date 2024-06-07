@@ -268,7 +268,7 @@
           android:layout_height="wrap_content"
           android:layout_weight="1"
           android:fontFamily="@font/poppinsbold"
-          android:text="Category"
+          android:text="Food Categories"
           android:textSize="20sp"
           android:textColor="@color/pink"/>
 

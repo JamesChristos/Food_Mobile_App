@@ -41,6 +41,8 @@ class RegisterActivity : BaseActivity() {
             googleSignInClient.signOut()
             startActivityForResult(googleSignInClient.signInIntent, 13)
         }
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
