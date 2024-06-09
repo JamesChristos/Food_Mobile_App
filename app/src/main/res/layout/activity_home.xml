@@ -69,11 +69,19 @@
 <!--            android:background="@drawable/gray_background"-->
 <!--            android:padding="12dp"-->
 <!--            android:src="@drawable/settings" />-->
+      <ImageView
+          android:id="@+id/FavBtn"
+          android:layout_width="60dp"
+          android:layout_height="50dp"
+          android:background="@drawable/gray_background"
+          android:paddingTop="3dp"
+          android:src="@drawable/favorite_white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginStart="6dp"
             android:background="@drawable/gray_background"
             android:orientation="horizontal">
 
@@ -96,7 +104,8 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_gravity="center"
-              android:layout_weight="1"
+              android:layout_weight="0"
+              android:layout_marginEnd="10dp"
               android:padding="4dp"
               android:src="@drawable/search_icon" />
         </LinearLayout>
@@ -268,7 +277,7 @@
           android:layout_height="wrap_content"
           android:layout_weight="1"
           android:fontFamily="@font/poppinsbold"
-          android:text="Food Categories"
+          android:text="Categories"
           android:textSize="20sp"
           android:textColor="@color/pink"/>
 

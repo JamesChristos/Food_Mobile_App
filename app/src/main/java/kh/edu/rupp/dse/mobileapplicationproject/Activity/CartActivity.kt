@@ -72,7 +72,6 @@ class CartActivity : AppCompatActivity() {
                 }
                 return true
             }
-
             override fun longPressHelper(p: GeoPoint?): Boolean {
                 // Not used
                 return false
