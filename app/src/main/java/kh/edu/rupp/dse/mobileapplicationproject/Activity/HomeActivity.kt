@@ -68,10 +68,6 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, CartActivity::class.java))
         }
 
-        binding.FavBtn.setOnClickListener {
-            startActivity(Intent(this, FavoriteActivity::class.java))
-        }
-
         binding.viewall.setOnClickListener {
             // Handle View All click
             val intent = Intent(this, BestFoodsActivity::class.java)
