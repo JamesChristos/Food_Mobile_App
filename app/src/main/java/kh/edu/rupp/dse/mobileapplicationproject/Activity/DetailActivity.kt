@@ -1,11 +1,15 @@
 package kh.edu.rupp.dse.mobileapplicationproject.Activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import kh.edu.rupp.dse.mobileapplicationproject.Domain.Foods
 import kh.edu.rupp.dse.mobileapplicationproject.databinding.ActivityDetailBinding
 import kh.edu.rupp.dse.mobileapplicationproject.Helperimport.ManagementCart
+import kh.edu.rupp.dse.mobileapplicationproject.Helperimport.ManagementFavorite
 
 class DetailActivity : AppCompatActivity() {
 
@@ -13,14 +17,31 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var foodObject: Foods
     private var num = 1
     private lateinit var managementCart: ManagementCart
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        databaseReference = FirebaseDatabase.getInstance().reference
+
+        binding.favBtn.setOnClickListener {
+            val foodItem = // create or get your Foods object
+                ManagementFavorite(this).insertFavorite(foodObject)
+        }
+
         getIntentExtra()
         setVariable()
+    }
+
+    private fun addFavorite(itemName: String) {
+        val favRef = databaseReference.child("Favorites").push()
+        val favItem = mapOf(
+            "itemName" to itemName,
+            "timestamp" to System.currentTimeMillis()
+        )
+        favRef.setValue(favItem)
     }
 
     private fun setVariable() {

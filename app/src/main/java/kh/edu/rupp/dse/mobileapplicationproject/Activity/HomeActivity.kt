@@ -36,6 +36,11 @@ class HomeActivity : AppCompatActivity() {
         // Display the full name
         binding.username.text = fullName
 
+        binding.FavBtn.setOnClickListener {
+            val intent = Intent(this, FavoriteActivity::class.java)
+            startActivity(intent)
+        }
+
         database = FirebaseDatabase.getInstance()
         databaseReference = FirebaseDatabase.getInstance().reference
 

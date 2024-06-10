@@ -73,7 +73,7 @@
           android:id="@+id/FavBtn"
           android:layout_width="60dp"
           android:layout_height="50dp"
-          android:background="@drawable/gray_background"
+          android:background="@drawable/pink_background"
           android:paddingTop="3dp"
           android:src="@drawable/favorite_white" />
 

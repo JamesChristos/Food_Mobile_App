@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="300dp"
+                android:layout_marginEnd="50dp"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Title"
                 android:textSize="16sp"
@@ -46,7 +46,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:padding="15dp"
-                android:src="@drawable/bin"
+                android:src="@drawable/trash"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

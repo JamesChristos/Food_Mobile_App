@@ -27,7 +27,7 @@ class CategoryAdapter(private val items: ArrayList<Category>) : RecyclerView.Ada
         val item = items[position]
         holder.titleTxt.text = item.Name
 
-        // Load the image using Glide
+//        // Load the image using Glide
         if (position == 0) {
             // Use pizza.jpg for the first item
             Glide.with(context)
@@ -41,9 +41,8 @@ class CategoryAdapter(private val items: ArrayList<Category>) : RecyclerView.Ada
                 .into(holder.pic)
         }
         else if (position == 2) {
-            // Use sandwich.jpg for the third item
             Glide.with(context)
-                .load(R.drawable.chicken) // Assuming sandwich.jpg is in the drawable folder
+                .load(R.drawable.chicken) // Assuming burger.jpg is in the drawable folder
                 .into(holder.pic)
         }
         else if (position == 3) {
